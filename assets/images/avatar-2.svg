@@ -1,6 +1,18 @@
 <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Avatar 2 - Get Married Today -->
-  <circle cx="24" cy="24" r="24" fill="#DBEAFE"/>
-  <circle cx="24" cy="18" r="8" fill="#3B82F6"/>
-  <path d="M10 40 Q10 28 24 28 Q38 28 38 40" fill="#3B82F6"/>
+  <!-- Avatar 2 - Get Married Today (Vibrant Purple/Pink) -->
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="24" cy="24" r="24" fill="url(#grad2)"/>
+  <!-- Simple person silhouette -->
+  <circle cx="24" cy="18" r="7" fill="white" opacity="0.95"/>
+  <path d="M 12 40 Q 12 30 24 30 Q 36 30 36 40 L 36 48 L 12 48 Z" fill="white" opacity="0.95"/>
+  <!-- Heart icon for wedding business -->
+  <g transform="translate(24, 28)">
+    <path d="M 0 -2 L 2 -4 Q 4 -6 5 -4 Q 6 -2 5 0 L 0 5 L -5 0 Q -6 -2 -5 -4 Q -4 -6 -2 -4 Z" fill="#EC4899" opacity="0.8"/>
+  </g>
 </svg>
