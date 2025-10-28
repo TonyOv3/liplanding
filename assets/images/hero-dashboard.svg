@@ -1,0 +1,136 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EEF2FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0E7FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F9FAFB;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bgGradient)"/>
+
+  <!-- Main Dashboard Card -->
+  <rect x="80" y="60" width="1040" height="680" rx="16" fill="url(#cardGradient)" filter="url(#shadow)"/>
+
+  <!-- Header Section -->
+  <rect x="100" y="80" width="1000" height="60" rx="8" fill="#4F46E5" opacity="0.1"/>
+  <rect x="120" y="95" width="200" height="30" rx="6" fill="#4F46E5"/>
+  <text x="135" y="117" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF">Lippy AI Dashboard</text>
+
+  <!-- Navigation Pills -->
+  <rect x="800" y="95" width="80" height="30" rx="15" fill="#E0E7FF"/>
+  <text x="820" y="115" font-family="Arial, sans-serif" font-size="12" fill="#4F46E5">Inbox</text>
+
+  <rect x="900" y="95" width="80" height="30" rx="15" fill="#E0E7FF"/>
+  <text x="918" y="115" font-family="Arial, sans-serif" font-size="12" fill="#4F46E5">Stats</text>
+
+  <rect x="1000" y="95" width="80" height="30" rx="15" fill="#4F46E5"/>
+  <text x="1016" y="115" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">Live</text>
+
+  <!-- Left Sidebar - Channels -->
+  <rect x="100" y="160" width="280" height="560" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="120" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#111827">Active Channels</text>
+
+  <!-- Channel Items -->
+  <g id="channel1">
+    <rect x="120" y="210" width="240" height="60" rx="8" fill="#EEF2FF"/>
+    <circle cx="145" cy="240" r="16" fill="#4F46E5"/>
+    <text x="145" y="247" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">📞</text>
+    <text x="175" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">Phone Calls</text>
+    <text x="175" y="252" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">24/7 AI Voice Agent</text>
+    <circle cx="340" cy="225" r="12" fill="#10B981"/>
+    <text x="340" y="230" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">5</text>
+  </g>
+
+  <g id="channel2">
+    <rect x="120" y="285" width="240" height="60" rx="8" fill="#F9FAFB"/>
+    <circle cx="145" cy="315" r="16" fill="#6366F1"/>
+    <text x="145" y="322" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">💬</text>
+    <text x="175" y="310" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">Web Chat</text>
+    <text x="175" y="327" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">Live conversations</text>
+    <circle cx="340" cy="300" r="12" fill="#10B981"/>
+    <text x="340" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+  </g>
+
+  <g id="channel3">
+    <rect x="120" y="360" width="240" height="60" rx="8" fill="#F9FAFB"/>
+    <circle cx="145" cy="390" r="16" fill="#8B5CF6"/>
+    <text x="145" y="397" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✉️</text>
+    <text x="175" y="385" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">Email</text>
+    <text x="175" y="402" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">Inbox management</text>
+    <circle cx="340" cy="375" r="12" fill="#F59E0B"/>
+    <text x="340" y="380" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">8</text>
+  </g>
+
+  <g id="channel4">
+    <rect x="120" y="435" width="240" height="60" rx="8" fill="#F9FAFB"/>
+    <circle cx="145" cy="465" r="16" fill="#EC4899"/>
+    <text x="145" y="472" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">📱</text>
+    <text x="175" y="460" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">SMS</text>
+    <text x="175" y="477" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">Text messaging</text>
+    <circle cx="340" cy="450" r="12" fill="#10B981"/>
+    <text x="340" y="455" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+  </g>
+
+  <!-- Main Content Area - Conversation View -->
+  <rect x="400" y="160" width="700" height="560" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+
+  <!-- Conversation Header -->
+  <rect x="400" y="160" width="700" height="60" rx="12" fill="#F9FAFB"/>
+  <text x="420" y="185" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">Active Conversation</text>
+  <text x="420" y="205" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">Customer: John Smith • Phone Call • 2:34 PM</text>
+  <circle cx="1060" cy="190" r="8" fill="#10B981"/>
+  <text x="1078" y="195" font-family="Arial, sans-serif" font-size="12" fill="#10B981">AI Active</text>
+
+  <!-- Chat Messages -->
+  <g id="message1">
+    <rect x="420" y="240" width="420" height="70" rx="12" fill="#EEF2FF"/>
+    <text x="440" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#4F46E5">Customer</text>
+    <text x="440" y="280" font-family="Arial, sans-serif" font-size="13" fill="#111827">Hi, I'd like to get a quote for selling</text>
+    <text x="440" y="298" font-family="Arial, sans-serif" font-size="13" fill="#111827">my iPhone 14 Pro Max</text>
+  </g>
+
+  <g id="message2">
+    <rect x="660" y="330" width="420" height="90" rx="12" fill="#4F46E5"/>
+    <text x="680" y="350" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#E0E7FF">Lippy AI</text>
+    <text x="680" y="370" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF">I'd be happy to help you with that! Let me</text>
+    <text x="680" y="388" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF">ask you a few quick questions. What's the</text>
+    <text x="680" y="406" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF">storage capacity and condition?</text>
+  </g>
+
+  <g id="message3">
+    <rect x="420" y="440" width="350" height="50" rx="12" fill="#EEF2FF"/>
+    <text x="440" y="460" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#4F46E5">Customer</text>
+    <text x="440" y="480" font-family="Arial, sans-serif" font-size="13" fill="#111827">256GB, excellent condition</text>
+  </g>
+
+  <!-- AI Status Indicator -->
+  <rect x="420" y="650" width="660" height="50" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="2"/>
+  <circle cx="440" cy="675" r="6" fill="#10B981">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="460" y="680" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#059669">AI is typing a response...</text>
+
+  <!-- Stats Overlay -->
+  <g id="statsCard">
+    <rect x="900" y="520" width="180" height="120" rx="12" fill="#FFFFFF" filter="url(#shadow)" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="920" y="545" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#6B7280">Today's Stats</text>
+    <text x="920" y="570" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4F46E5">127</text>
+    <text x="920" y="588" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">Conversations</text>
+    <text x="920" y="610" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#10B981">94%</text>
+    <text x="920" y="628" font-family="Arial, sans-serif" font-size="11" fill="#6B7280">AI Success Rate</text>
+  </g>
+
+  <!-- Decorative Elements -->
+  <circle cx="1050" cy="300" r="3" fill="#4F46E5" opacity="0.3"/>
+  <circle cx="1070" cy="320" r="2" fill="#6366F1" opacity="0.3"/>
+  <circle cx="1090" cy="305" r="2.5" fill="#8B5CF6" opacity="0.3"/>
+</svg>
