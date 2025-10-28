@@ -90,7 +90,7 @@
         <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.3s" repeatCount="indefinite"/>
       </path>
     </g>
-    <text x="250" y="25" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#1E40AF" text-anchor="middle">Phone</text>
+    <text x="250" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#1E40AF" text-anchor="middle">Phone</text>
     <!-- Animated flow arrow -->
     <circle cx="250" cy="105" r="4" fill="#3B82F6">
       <animate attributeName="cy" values="105;145;145" dur="2s" repeatCount="indefinite"/>
@@ -109,7 +109,7 @@
       <circle cx="0" cy="-2" r="2.5" fill="white"/>
       <circle cx="7" cy="-2" r="2.5" fill="white"/>
     </g>
-    <text x="400" y="255" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">Web Chat</text>
+    <text x="400" y="260" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">Web Chat</text>
     <!-- Animated flow arrow -->
     <circle cx="365" cy="200" r="4" fill="#10B981">
       <animate attributeName="cx" values="365;315;315" dur="2s" repeatCount="indefinite"/>
@@ -126,7 +126,7 @@
       <path d="M -16 -12 L 0 2 L 16 -12" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="12" cy="-8" r="4" fill="#EF4444" stroke="white" stroke-width="1.5"/>
     </g>
-    <text x="250" y="380" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#1E40AF" text-anchor="middle">Email</text>
+    <text x="250" y="300" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#1E40AF" text-anchor="middle">Email</text>
     <!-- Animated flow arrow -->
     <circle cx="250" cy="295" r="4" fill="#3B82F6">
       <animate attributeName="cy" values="295;255;255" dur="2s" repeatCount="indefinite"/>
@@ -144,7 +144,7 @@
       <line x1="-8" y1="2" x2="4" y2="2" stroke="white" stroke-width="2" stroke-linecap="round"/>
       <circle cx="10" cy="2" r="1.5" fill="white"/>
     </g>
-    <text x="100" y="255" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">SMS</text>
+    <text x="100" y="260" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#059669" text-anchor="middle">SMS</text>
     <!-- Animated flow arrow -->
     <circle cx="135" cy="200" r="4" fill="#10B981">
       <animate attributeName="cx" values="135;185;185" dur="2s" repeatCount="indefinite"/>
@@ -165,5 +165,5 @@
   </g>
 
   <!-- Bottom text -->
-  <text x="250" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1E40AF" text-anchor="middle" opacity="0.7">UNIFIED OMNICHANNEL</text>
+  <text x="250" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1E40AF" text-anchor="middle" opacity="0.7">UNIFIED OMNICHANNEL</text>
 </svg>
