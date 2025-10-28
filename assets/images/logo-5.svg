@@ -1,0 +1,5 @@
+<svg width="158" height="48" viewBox="0 0 158 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Velocity Inc Logo -->
+  <path d="M12 18 L20 30 L28 18" stroke="#EF4444" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="36" y="30" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1F2937">Velocity</text>
+</svg>
