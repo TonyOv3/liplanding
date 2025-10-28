@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lippy AI - Page Demo</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        /* Custom font for the page */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Helvetica, Arial, sans-serif;
+        }
+
+        /* --- Text Rotator Animation --- */
+        .rotating-text-wrapper {
+            display: inline-block;
+            height: 5rem;
+            overflow: hidden;
+            vertical-align: bottom;
+            line-height: 1.2;
+        }
+        .rotating-text-inner {
+            animation: rotateWords 7s infinite;
+        }
+        .rotating-word {
+            display: block;
+            line-height: 5rem;
+        }
+        @keyframes rotateWords {
+            0%   { transform: translateY(0); } /* Revenue */
+            28%  { transform: translateY(0); }
+            33%  { transform: translateY(-5rem); } /* Customers */
+            61%  { transform: translateY(-5rem); }
+            66%  { transform: translateY(-10rem); } /* Time */
+            94%  { transform: translateY(-10rem); }
+            95%  { transform: translateY(0); } /* Snap back */
+            100% { transform: translateY(0); }
+        }
+
+        /* --- Tally Form Styling --- */
+        .tally-iframe-wrapper {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+        .tally-powered-by {
+            display: none !important;
+        }
+
+        /* --- Live Demo Modal --- */
+        #demoModal.hidden { display: none; }
+        #demoModal {
+            display: flex;
+            position: fixed;
+            z-index: 50;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+        #demoModal-content {
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- SECTION: NAVBAR -->
+    <nav class="bg-white shadow-sm fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto max-w-6xl px-6">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-indigo-600">Lippy AI</span>
+                </div>
+
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="font-medium text-gray-600 hover:text-gray-900">Features</a>
+                    <a href="#who-is-for" class="font-medium text-gray-600 hover:text-gray-900">Who It's For</a>
+                    <a href="#testimonials" class="font-medium text-gray-600 hover:text-gray-900">Testimonials</a>
+                    <a href="#demo" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                        Book Your Demo
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" id="menu-icon-open" class="block h-6 w-6"></i>
+                        <i data-lucide="x" id="menu-icon-close" class="hidden h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200">
+            <div class="space-y-1 px-4 py-3">
+                <a href="#features" class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">Features</a>
+                <a href="#who-is-for" class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">Who It's For</a>
+                <a href="#testimonials" class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">Testimonials</a>
+                <a href="#demo" class="mt-2 block w-full text-center rounded-md bg-indigo-600 px-4 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500">
+                    Book Your Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION: HERO -->
+    <header class="bg-white pt-20">
+        <div class="container mx-auto max-w-6xl px-6 py-24 lg:py-32">
+            <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+
+                <div class="hero-content">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[4.5rem]">
+                        <span class="block">Stop Leaking
+                            <div class="rotating-text-wrapper">
+                                <div class="rotating-text-inner">
+                                    <span class="rotating-word text-indigo-600">Revenue</span>
+                                    <span class="rotating-word text-indigo-600">Customers</span>
+                                    <span class="rotating-word text-indigo-600">Time</span>
+                                    <span class="rotating-word text-indigo-600">Revenue</span>
+                                </div>
+                            </div>
+                        </span>
+                        <span class="block">Start Scaling Your Buyback Business</span>
+                    </h1>
+
+                    <p class="mt-6 text-xl leading-8 text-gray-600 max-w-lg">
+                        Your 24/7 AI Team: Answers Every Call, Chat, & Email.
+                        Closes More Deals.
+                    </p>
+
+                    <div class="mt-10 flex items-center gap-x-4">
+                        <a href="#demo" class="rounded-md bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Book Your Demo
+                        </a>
+                        <button id="open-demo-modal-button" class="text-base font-semibold leading-6 text-gray-900 hover:text-gray-700">
+                            See The AI in Action <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-visual rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
+                    <img src="https://placehold.co/600x400/E0E7FF/3730A3?text=Lippy+AI+Dashboard" alt="Lippy AI Omnichannel Inbox Dashboard" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION: PROBLEM VS. SOLUTION -->
+        <section id="features" class="bg-gray-50 py-24 sm:py-32">
+            <div class="container mx-auto max-w-6xl px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">The Old Way vs. The Lippy AI Way</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">
+                        Stop the Chaos. Start Converting.
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+                    <!-- Problem -->
+                    <div class="problem-column rounded-xl bg-white p-8 shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-red-600">The Broken 'Old Way'</h3>
+                        <ul class="mt-6 space-y-5">
+                            <li class="flex gap-x-3">
+                                <i data-lucide="x-circle" class="w-7 h-7 text-red-500 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">Missed Calls = Lost Revenue</strong>
+                                    Every call to voicemail is a lead sent directly to a competitor.
+                                </span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <i data-lucide="x-circle" class="w-7 h-7 text-red-500 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">Inbox & Chat Chaos</strong>
+                                    Drowning in web chats and emails, leading to slow replies and cold leads.
+                                </span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <i data-lucide="x-circle" class="w-7 h-7 text-red-500 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">Expensive, 9-to-5 Staff</strong>
+                                    High overhead for a team that only works business hours, with zero after-hours coverage.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Solution -->
+                    <div class="solution-column rounded-xl bg-white p-8 shadow-lg border border-gray-200">
+                        <h3 class="text-2xl font-semibold text-indigo-600">The Lippy AI Solution</h3>
+                        <ul class="mt-6 space-y-5">
+                            <li class="flex gap-x-3">
+                                <i data-lucide="check-circle-2" class="w-7 h-7 text-indigo-600 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">24/7 AI Voice Agents</strong>
+                                    Never miss a call. Get instant quotes, appointments, and lead qualification, even at 2 AM.
+                                </span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <i data-lucide="check-circle-2" class="w-7 h-7 text-indigo-600 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">Omnichannel Lead Capture</strong>
+                                    Engage instantly across web chat, email, SMS, and ad forms at the moment of peak intent.
+                                </span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <i data-lucide="check-circle-2" class="w-7 h-7 text-indigo-600 flex-shrink-0"></i>
+                                <span>
+                                    <strong class="block text-gray-900">Unified Communication Hub</strong>
+                                    All conversations from all channels, managed in one smart, always-on platform.
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="visual-proof mt-6 rounded-lg overflow-hidden border border-gray-200">
+                            <img src="https://placehold.co/600x300/E0E7FF/3730A3?text=Connected+Services" alt="Lippy AI Connected Services showing Google, HubSpot, and GoHighLevel" class="w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WHO IS FOR -->
+        <section id="who-is-for" class="who-is-for-section bg-white py-24 sm:py-32">
+            <div class="container mx-auto max-w-6xl px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Built for High-Volume Operators</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">If you're managing a high volume of inquiries, Lippy AI is built for you.</p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="who-card rounded-xl bg-gray-50 p-8 border border-gray-200 text-center flex flex-col items-center">
+                        <i data-lucide="smartphone" class="w-12 h-12 text-indigo-600"></i>
+                        <h4 class="mt-4 text-xl font-semibold text-gray-900">Buyback Businesses</h4>
+                        <p class="mt-2 text-base text-gray-600">Stop losing high-value leads to ad-form delays and web chat queues. Lippy qualifies and quotes 24/7.</p>
+                    </div>
+                    <div class="who-card rounded-xl bg-gray-50 p-8 border border-gray-200 text-center flex flex-col items-center">
+                        <i data-lucide="wrench" class="w-12 h-12 text-indigo-600"></i>
+                        <h4 class="mt-4 text-xl font-semibold text-gray-900">Large Repair Chains</h4>
+                        <p class="mt-2 text-base text-gray-600">Stop missing repair calls. Let Lippy book all your appointments and answer status questions *for* you.</p>
+                    </div>
+                    <div class="who-card rounded-xl bg-gray-50 p-8 border border-gray-200 text-center flex flex-col items-center">
+                        <i data-lucide="shopping-cart" class="w-12 h-12 text-indigo-600"></i>
+                        <h4 class="mt-4 text-xl font-semibold text-gray-900">E-commerce Stores</h4>
+                        <p class="mt-2 text-base text-gray-600">Stop drowning in "Where's my order?" and pre-sale questions. Lippy provides 24/7 support across all channels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: LOGO CLOUD -->
+        <section class="logo-cloud-section bg-gray-50 py-24 sm:py-32">
+            <div class="container mx-auto max-w-6xl px-6">
+                <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">
+                    Trusted by businesses nationwide
+                </h2>
+                <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://placehold.co/158x48/E0E7FF/3730A3?text=Simple+Solutions" alt="Simple Solutions Mobile Notary" width="158" height="48">
+                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://placehold.co/158x48/E0E7FF/3730A3?text=Your+Local+Notary" alt="Your Local Notary" width="158" height="48">
+                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://placehold.co/158x48/E0E7FF/3730A3?text=Get+Married+Today" alt="Get Married Today" width="158" height="48">
+                    <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://placehold.co/158x48/E0E7FF/3730A3?text=Mardena" alt="Mardena Construction" width="158" height="48">
+                    <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://placehold.co/158x48/E0E7FF/3730A3?text=SB+Corporate" alt="Santa Barbara Corporate Services" width="158" height="48">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TESTIMONIALS -->
+        <section id="testimonials" class="testimonials-section bg-white py-24 sm:py-32">
+            <div class="container mx-auto max-w-6xl px-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Don't Just Take Our Word For It</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">
+                        See how Lippy AI is transforming businesses just like yours.
+                    </p>
+                </div>
+                <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+
+                    <!-- Testimonial 1 (Remixed for Buyback) -->
+                    <div class="flex flex-col rounded-2xl bg-white p-8 shadow-lg border border-gray-200">
+                        <div class="flex-1">
+                            <p class="text-lg text-gray-700">"I was skeptical, but Lippy has been a game-changer. Our quote requests have **doubled** because we can respond instantly, 24/7. We're capturing leads we never would have before."</p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-x-4">
+                            <img class="h-12 w-12 rounded-full bg-gray-50" src="https://placehold.co/48x48/E0E7FF/3730A3?text=A" alt="Alex M.">
+                            <div>
+                                <div class="font-semibold text-gray-900">Alex M.</div>
+                                <div class="text-gray-600">Founder, PhoneResQ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 (Remixed for Repair) -->
+                    <div class="flex flex-col rounded-2xl bg-indigo-600 text-white p-8 shadow-2xl">
+                        <div class="flex-1">
+                            <p class="text-lg">"With Lippy AI managing our calls, I've seen a **huge reduction in missed appointments**. It handles all our repair bookings and status questions, freeing up my team to actually do the repairs."</p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-x-4">
+                            <img class="h-12 w-12 rounded-full bg-indigo-50" src="https://placehold.co/48x48/E0E7FF/3730A3?text=S" alt="Sarah J.">
+                            <div>
+                                <div class="font-semibold">Sarah J.</div>
+                                <div class="text-indigo-100">Owner, iRestore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 (General) -->
+                    <div class="flex flex-col rounded-2xl bg-white p-8 shadow-lg border border-gray-200">
+                        <div class="flex-1">
+                            <p class="text-lg text-gray-700">"Lippy has completely transformed our business. I **never miss a call**, and customers love the quick response times. It's the best employee I've ever hired."</p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-x-4">
+                            <img class="h-12 w-12 rounded-full bg-gray-50" src="https://placehold.co/48x48/E0E7FF/3730A3?text=M" alt="Mike P.">
+                            <div>
+                                <div class="font-semibold text-gray-900">Mike P.</div>
+                                <div class="text-gray-600">Manager, GetMarriedToday</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CLOSING CTA -->
+        <section id="demo" class="cta-section bg-gray-50 py-24 sm:py-32">
+            <div class="container mx-auto max-w-6xl px-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Ready to See Lippy in Action?</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">
+                        Book a 15-minute demo, or... get a live call from our AI assistant *right now*.
+                    </p>
+                </div>
+
+                <div class="tally-iframe-wrapper mt-16 max-w-2xl mx-auto shadow-xl">
+                    <iframe
+                        src="https://tally.so/embed/wdvr2K?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        width="100%"
+                        height="500"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        title="Book a 15-Min Demo">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION: FOOTER -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto max-w-6xl px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left">
+                    <span class="text-lg font-bold text-indigo-600">Lippy AI</span>
+                    <p class="mt-2 text-sm text-gray-500">
+                        &copy; 2024 Lippy AI. All rights reserved.
+                    </p>
+                </div>
+                <div class="flex justify-center space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Twitter</span>
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">LinkedIn</span>
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Facebook</span>
+                        <i data-lucide="facebook" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SECTION: MODAL -->
+    <div id="demoModal" class="hidden items-center justify-center">
+        <div id="demoModal-content" class="relative w-full max-w-md p-8 bg-white rounded-2xl shadow-2xl">
+            <button id="close-demo-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+                <span class="sr-only">Close modal</span>
+            </button>
+
+            <div class="flex flex-col items-center text-center">
+                <div class="rounded-full bg-indigo-100 p-4">
+                    <i data-lucide="phone-call" class="w-10 h-10 text-indigo-600"></i>
+                </div>
+                <h3 class="mt-4 text-2xl font-semibold text-gray-900">Get a Live Demo Call</h3>
+                <p class="mt-2 text-gray-600">Enter your name and number, and our Buyback Assistant will call you *right now* to give you a quote.</p>
+
+                <form id="demo-call-form" class="w-full mt-6 space-y-4">
+                    <div>
+                        <label for="demo-name" class="sr-only">Your Name</label>
+                        <input type="text" id="demo-name" placeholder="Your Name" required
+                               class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="demo-phone" class="sr-only">Phone Number</label>
+                        <input type="tel" id="demo-phone" placeholder="Phone Number (e.g., +15551234567)" required
+                               class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <button type="submit"
+                            class="w-full rounded-md bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500">
+                        Call Me Now
+                    </button>
+                </form>
+
+                <div id="demo-success-message" class="hidden mt-6">
+                    <i data-lucide="check-circle" class="w-12 h-12 text-green-500"></i>
+                    <h3 class="mt-4 text-xl font-semibold text-gray-900">Calling you now!</h3>
+                    <p class="mt-1 text-gray-600">Pick up your phone to talk to the Lippy AI.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SECTION: JAVASCRIPT -->
+    <script>
+        // --- Tally Form Branding Hider ---
+        window.addEventListener('load', () => {
+            try {
+                const style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = `
+                    .tally-powered-by {
+                        display: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            } catch (e) {
+                console.error("Error modifying Tally CSS: ", e);
+            }
+        });
+
+        // --- Main App Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Initialize Lucide Icons ---
+            try {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                } else {
+                    console.error('Lucide icons script did not load or define the global object.');
+                }
+            } catch (e) {
+                console.error('Error creating lucide icons:', e);
+            }
+
+            // --- 2. Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isMenuOpen = mobileMenu.classList.toggle('hidden');
+                    menuIconOpen.classList.toggle('hidden', !isMenuOpen);
+                    menuIconClose.classList.toggle('hidden', isMenuOpen);
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                });
+            }
+
+            // --- 3. Live Demo Modal Toggle ---
+            const demoModal = document.getElementById('demoModal');
+            const openDemoModalButton = document.getElementById('open-demo-modal-button');
+            const closeDemoModalButton = document.getElementById('close-demo-modal-button');
+            const demoCallForm = document.getElementById('demo-call-form');
+            const demoSuccessMessage = document.getElementById('demo-success-message');
+
+            if (openDemoModalButton) {
+                openDemoModalButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    demoModal.classList.remove('hidden');
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                });
+            }
+
+            function closeModal() {
+                demoModal.classList.add('hidden');
+                demoCallForm.classList.remove('hidden');
+                demoSuccessMessage.classList.add('hidden');
+            }
+            if (closeDemoModalButton) {
+                closeDemoModalButton.addEventListener('click', closeModal);
+            }
+            if (demoModal) {
+                demoModal.addEventListener('click', (e) => {
+                    if (e.target === demoModal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Handle Form Submission
+            if (demoCallForm) {
+                demoCallForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('demo-name').value;
+                    const phone = document.getElementById('demo-phone').value;
+
+                    console.log('Triggering Lippy AI Call:');
+                    console.log('Name:', name);
+                    console.log('Phone:', phone);
+
+                    demoCallForm.classList.add('hidden');
+                    demoSuccessMessage.classList.remove('hidden');
+
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+
+                    setTimeout(closeModal, 3000);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
