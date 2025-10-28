@@ -1,6 +1,11 @@
 <svg width="158" height="48" viewBox="0 0 158 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Quantum Group Logo -->
-  <rect x="12" y="16" width="16" height="16" rx="2" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
-  <circle cx="20" cy="24" r="3" fill="#8B5CF6"/>
-  <text x="36" y="30" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1F2937">Quantum</text>
+  <!-- ValueMax Logo - Valuation/pricing -->
+  <g transform="translate(10, 12)">
+    <!-- Icon: Upward trending arrow with dollar sign -->
+    <rect x="0" y="0" width="24" height="24" rx="5" fill="#8B5CF6" opacity="0.15"/>
+    <path d="M 4 20 L 8 16 L 12 18 L 16 12 L 20 8" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 16 8 L 20 8 L 20 12" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="6" y="12" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#8B5CF6">$</text>
+  </g>
+  <text x="42" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" fill="#1E293B">ValueMax</text>
 </svg>
