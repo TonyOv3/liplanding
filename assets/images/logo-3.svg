@@ -1,0 +1,6 @@
+<svg width="158" height="48" viewBox="0 0 158 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Apex Solutions Logo -->
+  <path d="M15 30 L20 18 L25 30" stroke="#F59E0B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="17" y1="26" x2="23" y2="26" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+  <text x="35" y="30" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1F2937">Apex</text>
+</svg>

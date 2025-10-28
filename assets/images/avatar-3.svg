@@ -1,0 +1,6 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Avatar 3 - Simple Solutions Notary -->
+  <circle cx="24" cy="24" r="24" fill="#FEE2E2"/>
+  <circle cx="24" cy="18" r="8" fill="#EF4444"/>
+  <path d="M10 40 Q10 28 24 28 Q38 28 38 40" fill="#EF4444"/>
+</svg>
