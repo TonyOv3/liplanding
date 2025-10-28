@@ -1233,7 +1233,7 @@
                     // Step 3: Agent response (remove typing, show message)
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     removeTypingIndicator();
-                    await createMessage(false, 'Agent Mike', 'Great, John! We can offer $850 for that device.', 0);
+                    await createMessage(false, 'Agent Mike', 'Great, John! We can offer $500 for that device.', 0);
 
                     // Step 4: Customer response
                     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -1260,6 +1260,10 @@
                     await new Promise(resolve => setTimeout(resolve, 2000));
                     removeTypingIndicator();
                     await createMessage(false, 'Agent Mike', 'Perfect. We\'re at 123 Main St. You can stop by anytime before 5 PM.', 0);
+
+                    // Step 10: Customer confirms drop-off time
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    await createMessage(true, 'John Doe', 'Okay so that works, I\'ll be in after work around 4.', 0);
 
                     // Wait 5 seconds before restarting
                     chatAnimationTimeout = setTimeout(() => {
