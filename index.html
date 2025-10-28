@@ -157,7 +157,8 @@
             72%  { transform: translateY(-10rem); }
             75%  { transform: translateY(-15rem); } /* Revenue (duplicate) */
             97%  { transform: translateY(-15rem); }
-            100% { transform: translateY(-15rem); } /* Stay at end position */
+            99.99% { transform: translateY(-15rem); }
+            100% { transform: translateY(0); } /* Snap back instantly to create seamless loop */
         }
 
         /* --- Tally Form Styling --- */
@@ -213,6 +214,147 @@
         }
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
+        }
+
+        /* --- Chat Dashboard Styles --- */
+        .chat-container {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #F9FAFB;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            animation: messageSlideIn 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.customer {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .chat-avatar.customer-avatar {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .chat-avatar.agent-avatar {
+            background: #E0E7FF;
+            color: #4338CA;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.9375rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.customer .chat-bubble {
+            background: #3B82F6;
+            color: white;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .chat-message.agent .chat-bubble {
+            background: white;
+            color: #1F2937;
+            border-bottom-left-radius: 0.25rem;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+
+        .sender-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #6B7280;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 1rem;
+            border-bottom-left-radius: 0.25rem;
+            width: fit-content;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+
+        .typing-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: #9CA3AF;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-0.5rem);
+            }
         }
     </style>
 </head>
@@ -292,8 +434,20 @@
                     </div>
                 </div>
 
-                <div class="hero-visual animate-slide-right rounded-xl shadow-2xl border border-gray-200 overflow-hidden card-hover">
-                    <img src="assets/images/hero-dashboard.svg" alt="Lippy AI Omnichannel Dashboard" class="w-full h-auto">
+                <div class="hero-visual animate-slide-right">
+                    <!-- Animated Chat Dashboard -->
+                    <div class="chat-container w-full">
+                        <div class="chat-header">
+                            <span>Lippy AI Dashboard</span>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span class="text-sm text-white/90">Live</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Messages will be dynamically inserted here -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,14 +465,53 @@
                 </div>
 
                 <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-                    <!-- Problem -->
+                    <!-- Problem: The Old Way -->
                     <div class="problem-column rounded-xl bg-white p-8 shadow-lg border border-gray-200 card-hover animate-fade-in-up stagger-1">
-                        <h3 class="text-xl font-bold text-gray-900">
-                            Staff Overload
-                        </h3>
-                        <p class="mt-2 text-gray-600">
-                            Staff are stretched thin during peak hours, while manual handling of routine inquiries consumes valuable team time, preventing focus on complex, high-value tasks.
-                        </p>
+                        <h3 class="text-2xl font-semibold text-red-600 mb-6">The Old Way</h3>
+
+                        <!-- Item 1 -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-gray-900">Missed Calls = Lost Revenue</h3>
+                                <p class="mt-2 text-gray-600">Every call to voicemail is a lead sent directly to a competitor.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="flex items-start mt-6">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-gray-900">Inbox & Chat Chaos</h3>
+                                <p class="mt-2 text-gray-600">Drowning in web chats and emails, leading to slow replies and cold leads.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 (Replaced) -->
+                        <div class="flex items-start mt-6">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold text-gray-900">
+                                    Staff Overload
+                                </h3>
+                                <p class="mt-2 text-gray-600">
+                                    Staff stretched by peak hours and repetitive questions, pulling them from high-value tasks.
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="visual-proof mt-6 rounded-lg overflow-hidden border border-gray-200 card-hover">
                             <img src="assets/images/old-way-chaos.svg" alt="The Old Way - Chaos and Overwhelm">
                         </div>
@@ -684,6 +877,122 @@
                     
                     setTimeout(closeModal, 3000);
                 });
+            }
+
+            // --- 4. Animated Chat Dashboard ---
+            const chatMessages = document.getElementById('chatMessages');
+
+            if (chatMessages) {
+                let chatAnimationTimeout;
+
+                function createMessage(isCustomer, name, text, delay = 0) {
+                    return new Promise((resolve) => {
+                        chatAnimationTimeout = setTimeout(() => {
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = `chat-message ${isCustomer ? 'customer' : 'agent'}`;
+
+                            const avatarDiv = document.createElement('div');
+                            avatarDiv.className = `chat-avatar ${isCustomer ? 'customer-avatar' : 'agent-avatar'}`;
+                            avatarDiv.textContent = name.split(' ').map(n => n[0]).join('');
+
+                            const contentDiv = document.createElement('div');
+                            contentDiv.className = 'flex flex-col';
+
+                            const nameDiv = document.createElement('div');
+                            nameDiv.className = 'sender-name';
+                            nameDiv.textContent = name;
+
+                            const bubbleDiv = document.createElement('div');
+                            bubbleDiv.className = 'chat-bubble';
+                            bubbleDiv.textContent = text;
+
+                            contentDiv.appendChild(nameDiv);
+                            contentDiv.appendChild(bubbleDiv);
+
+                            messageDiv.appendChild(avatarDiv);
+                            messageDiv.appendChild(contentDiv);
+
+                            chatMessages.appendChild(messageDiv);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                            resolve();
+                        }, delay);
+                    });
+                }
+
+                function createTypingIndicator() {
+                    return new Promise((resolve) => {
+                        const typingDiv = document.createElement('div');
+                        typingDiv.className = 'chat-message agent';
+                        typingDiv.id = 'typing-indicator';
+
+                        const avatarDiv = document.createElement('div');
+                        avatarDiv.className = 'chat-avatar agent-avatar';
+                        avatarDiv.textContent = 'AM';
+
+                        const typingBubble = document.createElement('div');
+                        typingBubble.className = 'typing-indicator';
+
+                        for (let i = 0; i < 3; i++) {
+                            const dot = document.createElement('div');
+                            dot.className = 'typing-dot';
+                            typingBubble.appendChild(dot);
+                        }
+
+                        typingDiv.appendChild(avatarDiv);
+                        typingDiv.appendChild(typingBubble);
+
+                        chatMessages.appendChild(typingDiv);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                        resolve(typingDiv);
+                    });
+                }
+
+                function removeTypingIndicator() {
+                    const typingIndicator = document.getElementById('typing-indicator');
+                    if (typingIndicator) {
+                        typingIndicator.remove();
+                    }
+                }
+
+                async function runChatAnimation() {
+                    // Clear previous messages
+                    chatMessages.innerHTML = '';
+
+                    // Step 1: Customer message
+                    await createMessage(true, 'John Doe', 'Hi, I have an iPhone 11 Pro Max 64GB in good condition to sell.', 0);
+
+                    // Step 2: Agent typing
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    const typingIndicator = await createTypingIndicator();
+
+                    // Step 3: Agent response (remove typing, show message)
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    removeTypingIndicator();
+                    await createMessage(false, 'Agent Mike', 'Great, John! We can offer $500 for that device.', 0);
+
+                    // Step 4: Customer response
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    await createMessage(true, 'John Doe', 'Sounds good, what\'s the next step?', 0);
+
+                    // Step 5: Agent typing again
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    await createTypingIndicator();
+
+                    // Step 6: Agent final response
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    removeTypingIndicator();
+                    await createMessage(false, 'Agent Mike', 'You can either ship it to us with a free prepaid label, or drop it off at our downtown location. Which do you prefer?', 0);
+
+                    // Wait 5 seconds before restarting
+                    chatAnimationTimeout = setTimeout(() => {
+                        runChatAnimation();
+                    }, 5000);
+                }
+
+                // Start the animation
+                runChatAnimation();
             }
         });
     </script>
