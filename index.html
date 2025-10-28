@@ -222,73 +222,175 @@
             border-radius: 0.75rem;
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             overflow: hidden;
-            min-height: 500px;
+            min-height: 400px;
             display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Desktop layout */
+        @media (min-width: 640px) {
+            .dashboard-container {
+                flex-direction: row;
+                min-height: 500px;
+            }
         }
 
         .dashboard-nav {
-            width: 20%;
-            min-width: 200px;
+            width: 100%;
             background: #1F2937;
             color: white;
             display: flex;
-            flex-direction: column;
-            padding: 1.5rem 0;
+            flex-direction: row;
+            padding: 0.75rem;
+            justify-content: space-around;
+            border-bottom: 1px solid #374151;
+        }
+
+        /* Desktop navigation */
+        @media (min-width: 640px) {
+            .dashboard-nav {
+                width: 16.666667%; /* 1/6 */
+                min-width: 180px;
+                flex-direction: column;
+                padding: 1.5rem 0;
+                justify-content: flex-start;
+                border-bottom: none;
+            }
         }
 
         .dashboard-logo {
-            padding: 0 1.5rem;
-            margin-bottom: 2rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #6366F1;
+            display: none;
+        }
+
+        /* Show logo on desktop */
+        @media (min-width: 640px) {
+            .dashboard-logo {
+                display: block;
+                padding: 0 1.5rem;
+                margin-bottom: 2rem;
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: #6366F1;
+            }
         }
 
         .dashboard-menu {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        /* Desktop menu */
+        @media (min-width: 640px) {
+            .dashboard-menu {
+                flex-direction: column;
+                width: auto;
+                justify-content: flex-start;
+            }
         }
 
         .dashboard-menu-item {
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem;
             color: #D1D5DB;
             font-size: 0.9375rem;
             transition: all 0.2s;
             border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        /* Desktop menu items */
+        @media (min-width: 640px) {
+            .dashboard-menu-item {
+                padding: 0.75rem 1.5rem;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 0.75rem;
+                border-bottom: none;
+            }
+        }
+
+        .dashboard-menu-item-text {
+            display: none;
+            font-size: 0.625rem;
+        }
+
+        /* Show text on desktop */
+        @media (min-width: 640px) {
+            .dashboard-menu-item-text {
+                display: inline;
+                font-size: 0.9375rem;
+            }
         }
 
         .dashboard-menu-item:hover {
             background: #374151;
             color: white;
-            border-left-color: #6366F1;
+            border-bottom-color: #6366F1;
+        }
+
+        /* Desktop hover */
+        @media (min-width: 640px) {
+            .dashboard-menu-item:hover {
+                border-bottom-color: transparent;
+                border-left-color: #6366F1;
+            }
         }
 
         .dashboard-menu-item.active {
             background: #374151;
             color: white;
-            border-left-color: #6366F1;
+            border-bottom-color: #6366F1;
+        }
+
+        /* Desktop active */
+        @media (min-width: 640px) {
+            .dashboard-menu-item.active {
+                border-bottom-color: transparent;
+                border-left-color: #6366F1;
+            }
         }
 
         .dashboard-main {
             flex: 1;
-            background: #F3F4F6;
+            width: 100%;
+            background: #F9FAFB;
             display: flex;
             flex-direction: column;
         }
 
+        /* Desktop main area */
+        @media (min-width: 640px) {
+            .dashboard-main {
+                width: 83.333333%; /* 5/6 */
+                background: #F3F4F6;
+            }
+        }
+
         .dashboard-header {
             background: white;
-            padding: 1.25rem 1.5rem;
+            padding: 0.875rem 1rem;
             border-bottom: 1px solid #E5E7EB;
             font-weight: 600;
-            font-size: 1.125rem;
+            font-size: 0.9375rem;
             color: #111827;
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+
+        /* Desktop dashboard header */
+        @media (min-width: 640px) {
+            .dashboard-header {
+                padding: 1.25rem 1.5rem;
+                font-size: 1.125rem;
+            }
         }
 
         /* --- Chat Dashboard Styles --- */
@@ -297,32 +399,56 @@
             border-radius: 0.5rem;
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
             overflow: hidden;
-            margin: 1.5rem;
+            margin: 0.75rem;
             display: flex;
             flex-direction: column;
             flex: 1;
+        }
+
+        /* Desktop chat container */
+        @media (min-width: 640px) {
+            .chat-container {
+                margin: 1.5rem;
+            }
         }
 
         .chat-header {
             background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
             color: white;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        /* Desktop chat header */
+        @media (min-width: 640px) {
+            .chat-header {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
         .chat-messages {
             flex: 1;
-            padding: 1.5rem;
+            padding: 0.75rem;
             overflow-y: auto;
             background: #F9FAFB;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            max-height: 400px;
+            gap: 0.75rem;
+            max-height: 300px;
+        }
+
+        /* Desktop chat messages */
+        @media (min-width: 640px) {
+            .chat-messages {
+                padding: 1.5rem;
+                gap: 1rem;
+                max-height: 400px;
+            }
         }
 
         .chat-message {
@@ -349,15 +475,24 @@
         }
 
         .chat-avatar {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+        }
+
+        /* Desktop chat avatar */
+        @media (min-width: 640px) {
+            .chat-avatar {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 0.875rem;
+            }
         }
 
         .chat-avatar.customer-avatar {
@@ -371,11 +506,21 @@
         }
 
         .chat-bubble {
-            max-width: 70%;
-            padding: 0.75rem 1rem;
+            max-width: 85%;
+            padding: 0.625rem 0.875rem;
             border-radius: 1rem;
-            font-size: 0.9375rem;
-            line-height: 1.5;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        /* Desktop chat bubble */
+        @media (min-width: 640px) {
+            .chat-bubble {
+                max-width: 70%;
+                padding: 0.75rem 1rem;
+                font-size: 0.9375rem;
+                line-height: 1.5;
+            }
         }
 
         .chat-message.customer .chat-bubble {
@@ -522,23 +667,23 @@
                             <nav class="dashboard-menu">
                                 <div class="dashboard-menu-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                    Home
+                                    <span class="dashboard-menu-item-text">Home</span>
                                 </div>
                                 <div class="dashboard-menu-item active">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                                    Assistant
+                                    <span class="dashboard-menu-item-text">Assistant</span>
                                 </div>
                                 <div class="dashboard-menu-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    Connected Services
+                                    <span class="dashboard-menu-item-text">Services</span>
                                 </div>
                                 <div class="dashboard-menu-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                                    Logs
+                                    <span class="dashboard-menu-item-text">Logs</span>
                                 </div>
                                 <div class="dashboard-menu-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                    Contacts
+                                    <span class="dashboard-menu-item-text">Contacts</span>
                                 </div>
                             </nav>
                         </div>
